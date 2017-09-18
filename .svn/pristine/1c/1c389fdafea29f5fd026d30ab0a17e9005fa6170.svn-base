@@ -1,0 +1,22 @@
+package frame.sys;
+
+import business.program.ProgramTask;
+
+class TaskUtil
+{
+	public static void startTask()
+	{
+		//获取系统栏目
+		ProgramTask.i().startService();
+		
+		
+		//获取系统参数
+		try
+		{
+			SysParamTask.i().init();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}

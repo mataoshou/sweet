@@ -1,0 +1,162 @@
+package frame.sys;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
+import tool.common.Convert;
+
+public abstract class BaseCache extends Thread
+{
+	static Logger logger;
+	static BaseCache one;
+
+	/**
+	 * 获取单例
+	 */
+	public static BaseCache i(Class<? extends BaseCache> cl)
+	{
+		if (one == null)
+		{
+			logger = Logger.getLogger(cl);// 初始化日志
+			try
+			{
+				one = cl.newInstance();// 初始化单例
+			} catch (InstantiationException e)
+			{
+				e.printStackTrace();
+			} catch (IllegalAccessException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		return one;
+	}
+
+	boolean isCircle = true;// 是否循环 默认循环
+	long interval = 1000 * 60 * 60;// 循环时间间隔 默认时间间隔为1小时
+	Map m_map = new HashMap();//缓存数据
+	Object m_lock = new Object();//缓存数据处理过程的锁
+
+	/**
+	 * 设置任务循环状态 true 循环 ; false 执行一次
+	 */
+	public void setCirlce(boolean isCircle)
+	{
+		this.isCircle = isCircle;
+	}
+
+	/**
+	 * 设置循环时间间隔 时间单位 毫秒
+	 */
+	public void setInterval(long interval)
+	{
+		this.interval = interval;
+	}
+
+	/**
+	 * 启动线程
+	 */
+	public void startService()
+	{
+		logger.debug("启动缓存");
+		start();
+	}
+
+	@Override
+	public void run()
+	{
+		while (true)
+		{
+			try
+			{
+				synchronized (m_lock)
+				{
+					excute();
+				}
+			} catch (Exception e)
+			{
+				e.printStackTrace();
+			} finally
+			{
+				if (!isCircle)
+					break;// 循环状态为false 停止循环 （只循环一次）
+			}
+			try
+			{
+				Thread.sleep(interval);
+			} catch (InterruptedException e)
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * 任务函数
+	 */
+	protected abstract void excute();
+
+	/**
+	 *添加缓存数据
+	 */
+	public void add(Object key,Object value)
+	{
+		synchronized(m_lock){
+			m_map.put(key, value);
+		}
+	}
+	
+	/**
+	 *清理缓存数据
+	 */
+	public void clean()
+	{
+		synchronized(m_lock){
+			m_map.clear();
+		}
+	}
+	/**
+	 *删除指定key的缓存数据
+	 */
+	public void remove(Object key)
+	{
+		synchronized(m_lock){
+			m_map.remove(key);
+		}
+	}
+	/**
+	 *获取指定key的缓存数据 
+	 */
+	public Object get(Object key)
+	{
+		return m_map.get(key);
+	}
+	
+	/**
+	 * 获取所有缓存数据
+	 */
+	public List list(){
+		return Convert.valuetoList(m_map);
+	}
+	
+	public List list(Object... o)
+	{
+		List list=null;
+		logger.debug("未初始化该函数，返回数据为空");
+		return list;
+	}
+	
+	/**
+	 *更新数据
+	 */
+	public void init()
+	{
+		synchronized(m_lock)
+		{
+			excute();
+		}
+	}
+}

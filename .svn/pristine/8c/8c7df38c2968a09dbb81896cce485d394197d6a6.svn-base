@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="sweet"
+  id="myeclipse.1497941729098"
+  context-root="/sweet"
+  j2ee-spec="6.0"
+  archive="sweet.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

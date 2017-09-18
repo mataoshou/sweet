@@ -1,0 +1,31 @@
+package business.test;
+
+import java.util.List;
+
+import business.db.User;
+import frame.hibernate.DBUtil;
+
+public class SqlTest
+{
+	public static void main(String [] args)
+	{
+		String sql="FROM User";
+		try
+		{
+			List list= DBUtil.list(sql, false);
+			
+			System.out.println(list.size());
+			
+			for(int i=0;i<list.size();i++)
+			{
+				System.out.println(i);
+				User u=(User) list.get(i);
+				System.out.println(u.getDisplayName());
+			}
+		} catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
