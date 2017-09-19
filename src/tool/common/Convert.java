@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.json.JSONArray;
+
 /**
  * 数据类型的转换
  */
@@ -51,5 +53,16 @@ public class Convert
 			result.add(it.next());
 		}
 		return result;
+	}
+	
+	//JSONArray 转为 String 数组
+	public static String[] jsonToSArray(JSONArray array)
+	{
+		String[] strs=new String[array.size()];
+		for(int i=0;i<array.size();i++)
+		{
+			strs[i]=array.getString(i);
+		}
+		return strs;
 	}
 }

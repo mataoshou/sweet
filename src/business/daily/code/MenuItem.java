@@ -5,6 +5,15 @@ public class MenuItem
 	private String fileName;//文件名
 	private String[] path;//存储路径
 	private String parentName;//父类的文件名
+	private String fileType;//文件类型
+	public String getFileType()
+	{
+		return fileType;
+	}
+	public void setFileType(String fileType)
+	{
+		this.fileType = fileType;
+	}
 	public String getFileName()
 	{
 		return fileName;
@@ -29,6 +38,4 @@ public class MenuItem
 	{
 		this.parentName = parentName;
 	}
-	
-	
 }

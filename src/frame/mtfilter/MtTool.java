@@ -41,8 +41,8 @@ public class MtTool
 			return Boolean.valueOf(value.toString());
 		if(type.equals(String.class))
 			return String.valueOf(value);
-		if(type.equals(Date.class))
-			return null;
+//		if(type.equals(Date.class))
+//			return null;
 		return null;
 	}
 }
