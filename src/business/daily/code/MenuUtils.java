@@ -10,7 +10,7 @@ public class MenuUtils
 	public static File pathBuild(String root ,String[] path)
 	{
 		String child=BaseFileUtil.getFilePath(path);
-		
+		if(child==null) return new File(root);
 		return new File(root,child);
 	}
 }
