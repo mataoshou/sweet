@@ -20,7 +20,7 @@
      	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
   
-  
+  <!-- mt action -->
   	<filter>
 		<filter-name>mt</filter-name>
 		<filter-class>frame.mtfilter.MtFilter</filter-class>
@@ -29,7 +29,7 @@
 		<filter-name>mt</filter-name>
 		<url-pattern>*.mt</url-pattern>
 	</filter-mapping>
-  
+  <!-- 文件上传  -->
   <servlet>
     <servlet-name>FileUploadServlet</servlet-name>
     <servlet-class>tool.file.FileUploadServlet</servlet-class>
@@ -40,14 +40,9 @@
     <url-pattern>/FileUpload</url-pattern>
   </servlet-mapping>
   
+  <!-- 系统启动项 -->
     <filter>
 		<filter-name>start</filter-name>
-		<filter-class>frame.sys.StartSys</filter-class>
+		<filter-class>frame.sys.StartSysFilter</filter-class>
 	</filter>
-  <!-- 定义LOG4J监听器 -->
-	<listener>
-	   <listener-class>
-			org.springframework.web.util.Log4jConfigListener
-	   </listener-class>
-	</listener>
 </web-app>

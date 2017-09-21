@@ -59,16 +59,4 @@ public class MenuGetAction extends MtAction
 		
 		return ReplyUtils.reply(errorCode, reason, result);
 	}
-
-	public static void main(String[] args)
-	{
-		MenuGetAction menu = new MenuGetAction();
-
-		JSONArray array = new JSONArray();
-		JSONObject json = new JSONObject();
-		array.add("root");
-		json.put("path", array);
-		//System.out.println(json.toString());
-		System.out.println(menu.excute(json.toString()));
-	}
 }
