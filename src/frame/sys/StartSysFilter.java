@@ -12,6 +12,8 @@ import javax.servlet.ServletResponse;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import business.Config;
+
 public class StartSysFilter implements Filter
 {
 	Logger logger=Logger.getLogger(StartSysFilter.class);
