@@ -17,9 +17,11 @@ import tool.file.FileStore;
 
 import frame.mtfilter.MtAction;
 
+//获取文件内容
 public class CodeGetAction extends MtAction
 {
-	Logger logger=Logger.getLogger(getClass());
+	Logger logger = Logger.getLogger(getClass());
+
 	@Override
 	public String excute(String content)
 	{
@@ -31,15 +33,15 @@ public class CodeGetAction extends MtAction
 		// 获取文件路径
 		JSONArray paths = json.getJSONArray("path");
 		String[] str = Convert.jsonToSArray(paths);
-		String name=json.getString("name");
+		String name = json.getString("name");
 		JSONObject result = new JSONObject();
 		try
 		{
 			File root = MenuUtils.pathBuild(Config.codeRoot, str);// 当前目录
-			File f=new File(root,name);
-			if(f.exists())
+			File f = new File(root, name);
+			if (f.exists())
 			{
-				String substance=FileStore.getContent(f, "UTF-8");
+				String substance = FileStore.getContent(f, "UTF-8");
 				result.put("content", substance);
 				System.out.println(substance);
 			}
@@ -48,15 +50,15 @@ public class CodeGetAction extends MtAction
 			return ReplyUtils.reply(-1, "文件内容获取失败");
 		}
 		result.put("path", paths);
-		
-		return ReplyUtils.reply(errorCode, reason, result);//构建返回结果
+
+		return ReplyUtils.reply(errorCode, reason, result);// 构建返回结果
 	}
-	
+
 	public static void main(String[] args)
 	{
-		CodeGetAction action=new CodeGetAction();
-		JSONObject json=new JSONObject();
-		JSONArray array=new JSONArray();
+		CodeGetAction action = new CodeGetAction();
+		JSONObject json = new JSONObject();
+		JSONArray array = new JSONArray();
 		json.put("path", array);
 		json.put("name", "ProgramCache.java");
 		action.excute(json.toString());

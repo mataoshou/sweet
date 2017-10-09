@@ -16,13 +16,15 @@ import tool.file.BaseFileUtil;
 import tool.file.FileType;
 import frame.mtfilter.MtAction;
 
-public class MenuGetAction extends MtAction
+//获取文件列表
+public class MenuListAction extends MtAction
 {
-	Logger logger=Logger.getLogger(getClass());
+	Logger logger = Logger.getLogger(getClass());
+
 	@Override
 	public String excute(String req)
 	{
-		logger.debug("...........MenuGetAction..............");
+		logger.debug("...........MenuListAction..............");
 		int errorCode = 0;// 错误状态
 		String reason = "OK";// 出错原因
 
@@ -57,7 +59,7 @@ public class MenuGetAction extends MtAction
 		}
 		result.put("items", JSONArray.fromObject(list));
 		result.put("path", paths);
-		
-		return ReplyUtils.reply(errorCode, reason, result);//构建返回结果
+
+		return ReplyUtils.reply(errorCode, reason, result);// 构建返回结果
 	}
 }

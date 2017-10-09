@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mt>
 	<action name="data" class="main.mt.DataSampleAction"></action>
-	<action name="MenuGet" class="business.daily.code.MenuGetAction"></action>
+	<action name="MenuGet" class="business.daily.code.MenuListAction"></action>
 </mt>
