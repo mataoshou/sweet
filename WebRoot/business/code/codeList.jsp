@@ -29,7 +29,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <div style="height:700px;background:#ccc;">
     	<div class="head"></div>
-    	<div class="middle"></div>
+    	<div class="middle">
+    		<div class="left"></div>
+    		<div class="right"></div>
+    	</div>
     	<div class="bottom"></div>
     </div>
   </body>
