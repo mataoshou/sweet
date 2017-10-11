@@ -19,21 +19,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<link rel="stylesheet" href="plugin/bootstrap-3.3.7/css/bootstrap.min.css " type="text/css" />
+	
+	
 	<style type="text/css">
 		.head{
 			height:150px;
 			background:#aaa;
 		}
+		.middle{
+			height:150px;
+			background:#bbb;
+		}
+		.left{
+			
+		}
+		.right{
+			
+		}
+		.bottom{
+			height:150px;
+			background:#ccc;
+		}
 	</style>
   </head>
   <body>
-    <div style="height:700px;background:#ccc;">
+    <div style="height:700px;background:#ddd;">
     	<div class="head"></div>
-    	<div class="middle">
-    		<div class="left"></div>
-    		<div class="right"></div>
+    	<div class="container-fluid middle">
+    		<div class="row">
+    			<div class="col-md-2 menu">
+					<div class="menu-title"></div>
+					<div class="menu-item-contain"></div>
+				</div>
+    			<div class="col-md-8 content">222222222</div>
+    		</div>
+    		
+    		
     	</div>
     	<div class="bottom"></div>
     </div>
   </body>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="plugin/bootstrap-3.3.7/js/bootstrap.js"></script>
 </html>

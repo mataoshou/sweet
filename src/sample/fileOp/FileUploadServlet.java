@@ -1,4 +1,4 @@
-package tool.file;
+package sample.fileOp;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,7 +17,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
 
 import tool.common.GuidUtils;
-
+import tool.file.BaseFileUtil;
+//文件上传
 public class FileUploadServlet extends HttpServlet
 {
 
