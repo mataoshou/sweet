@@ -18,27 +18,10 @@ import org.apache.commons.fileupload.util.Streams;
 
 import tool.common.GuidUtils;
 import tool.file.BaseFileUtil;
+
 //文件上传
 public class FileUploadServlet extends HttpServlet
 {
-
-	/**
-	 * Constructor of the object.
-	 */
-	public FileUploadServlet()
-	{
-		super();
-	}
-
-	/**
-	 * Destruction of the servlet. <br>
-	 */
-	public void destroy()
-	{
-		super.destroy(); // Just puts "destroy" string in log
-		// Put your code here
-	}
-
 	/**
 	 * The doPost method of the servlet. <br>
 	 * 
@@ -57,7 +40,7 @@ public class FileUploadServlet extends HttpServlet
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		String root="c:/";
+		String root = "c:/";
 		boolean isMutiply = ServletFileUpload.isMultipartContent(request);
 
 		request.setCharacterEncoding("UTF-8");
@@ -68,23 +51,25 @@ public class FileUploadServlet extends HttpServlet
 			while (items.hasNext())
 			{
 				FileItemStream stream = items.next();
-				String fileName= stream.getName();
-				InputStream input=stream.openStream();
-				if(!stream.isFormField())
+				String fileName = stream.getName();
+				InputStream input = stream.openStream();
+				if (!stream.isFormField())//获取参数
 				{
 					String fieldValue = Streams.asString(input, "UTF-8");
-				}
-				else
-				{
-					String name=GuidUtils.guid2();
-					String suffix=BaseFileUtil.getSuffix(fileName);
-					File temp=new File(root,name+"."+suffix);
-					System.out.println("临时存储路径："+temp.getPath());
-					FileOutputStream out=new FileOutputStream(temp);
-					byte[] b=new byte[1024*10];
-					int n=0;
-					while((n=input.read(b, 0, b.length))>=0)
+				} else
+				{//获取文件
+					String name = GuidUtils.guid2();
+					String suffix = BaseFileUtil.getSuffix(fileName);
+					File temp = new File(root, name + "." + suffix);
+					System.out.println("临时存储路径：" + temp.getPath());
+					FileOutputStream out = new FileOutputStream(temp);
+					byte[] b = new byte[1024 * 10];
+					int n = 0;
+					while (true)
 					{
+						n = input.read(b, 0, b.length);
+						if (n < 0)
+							break;
 						out.write(b, 0, n);
 					}
 					input.close();
@@ -96,16 +81,4 @@ public class FileUploadServlet extends HttpServlet
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * Initialization of the servlet. <br>
-	 * 
-	 * @throws ServletException
-	 *             if an error occurs
-	 */
-	public void init() throws ServletException
-	{
-		// Put your code here
-	}
-
 }

@@ -54,8 +54,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
     			<div class="col-md-8 content">222222222</div>
     		</div>
-    		
-    		
     	</div>
     	<div class="bottom"></div>
     </div>
