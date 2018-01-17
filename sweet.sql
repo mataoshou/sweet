@@ -16,6 +16,43 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`sweet` /*!40100 DEFAULT CHARACTER SET u
 
 USE `sweet`;
 
+/*Table structure for table `sweet_item` */
+
+DROP TABLE IF EXISTS `sweet_item`;
+
+CREATE TABLE `sweet_item` (
+  `id` bigint(16) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) DEFAULT NULL COMMENT '名称',
+  `code` varchar(128) DEFAULT NULL COMMENT '编码',
+  `max` float DEFAULT NULL COMMENT '最大值',
+  `maxTime` date DEFAULT NULL COMMENT '最大值时间',
+  `min` float DEFAULT NULL COMMENT '最小值',
+  `minTime` date DEFAULT NULL COMMENT '最小值时间',
+  `safe` float DEFAULT NULL COMMENT '安全值',
+  `flagDelete` tinyint(1) DEFAULT NULL COMMENT '删除状态',
+  `timeDelete` date DEFAULT NULL COMMENT '删除时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `sweet_item` */
+
+/*Table structure for table `sweet_priview` */
+
+DROP TABLE IF EXISTS `sweet_priview`;
+
+CREATE TABLE `sweet_priview` (
+  `itemId` bigint(16) NOT NULL COMMENT '选项id',
+  `p_max` float DEFAULT NULL COMMENT '预测最大值',
+  `p_min` float DEFAULT NULL COMMENT '预测最小值',
+  `safe` tinyint(4) DEFAULT NULL COMMENT '安全状态',
+  `continue` tinyint(4) DEFAULT NULL COMMENT '是否继续',
+  `begin` float DEFAULT NULL COMMENT '开始',
+  `end` float DEFAULT NULL COMMENT '结束',
+  PRIMARY KEY (`itemId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `sweet_priview` */
+
 /*Table structure for table `sweet_program` */
 
 DROP TABLE IF EXISTS `sweet_program`;
